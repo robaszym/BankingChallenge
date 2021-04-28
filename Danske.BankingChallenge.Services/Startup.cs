@@ -35,7 +35,7 @@ namespace Danske.BankingChallenge.Services
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //enable swagger for testing purposes; normally it should be disabled when it's not development environment
+            //Enable swagger for testing purposes. Normally it should be disabled when it's not development environment
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

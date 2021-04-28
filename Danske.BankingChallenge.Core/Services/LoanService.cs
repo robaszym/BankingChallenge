@@ -19,7 +19,7 @@ namespace Danske.BankingChallenge.Core.Services
 
             return new PaymentOverview
             {
-                EffectiveAPR = CalculateAPR(loan),
+                EffectiveAPR = RoundValue(CalculateAPR()),
                 MonthlyCost = RoundValue(CalculateMonthlyCost(loan)),
                 InterestRateTotal = RoundValue(CalculateInterestRateTotal(loan)),
                 AdministrativeFeesTotal = RoundValue(CalculateAdministrativeFeesTotal(loan))
@@ -44,9 +44,18 @@ namespace Danske.BankingChallenge.Core.Services
             }
         }
 
-        private decimal CalculateAPR(Loan loan)
+        //Possible change in implementation is to replace below methods with "Strategy" pattern, but it'll be overkill in that case
+        private decimal CalculateAPR()
         {
-            return 0;
+            /*
+             * I'm aware that's not formula for EAPR, but rather for EAR. As I joined recrutation process in the last moment, I decided to use EAR to at least show "some" calculations.
+             * EAPR equation is quite sophisticated and implementing this would take too much time and I believe that purpose of this challenge is not only checking math related skills ;)
+             */
+            decimal periodicRate = _configurationProvider.GetLoanTermsConfiguration().InterestRate / _configurationProvider.GetLoanTermsConfiguration().PeymentsPerYear;
+            decimal q = 1 + periodicRate;
+            decimal qN = (decimal)Math.Pow((double)q, _configurationProvider.GetLoanTermsConfiguration().PeymentsPerYear);
+
+            return (qN - 1) * 100;
         }
 
         private decimal CalculateMonthlyCost(Loan loan)

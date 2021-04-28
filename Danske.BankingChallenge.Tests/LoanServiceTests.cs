@@ -88,7 +88,7 @@ namespace Danske.BankingChallenge.Tests
                 Duration = 120
             };
 
-            Assert.AreEqual(2000, _loanService.GetPaymentOverview(loan).EffectiveAPR);
+            Assert.AreEqual(5.12m, _loanService.GetPaymentOverview(loan).EffectiveAPR);
         }
 
         [Test]
