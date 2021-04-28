@@ -7,6 +7,6 @@
 
 ## Testing application
 You can test API from Swagger UI, by opening in web browser url: https://localhost:5001/swagger/index.html when application is running.
-Alternatively you can use POSTman or other tool for sending requests, including web any browser. Simply open url: https://localhost:5001/api/Loan/Calculate?Amount=500000&Duration=120
+Alternatively you can use POSTman or other tool for sending requests, including any web browser. Simply open url: https://localhost:5001/api/Loan/Calculate?Amount=500000&Duration=120
 
 _500000_ and _120_ values represent loan parameters. Change them to test API.
